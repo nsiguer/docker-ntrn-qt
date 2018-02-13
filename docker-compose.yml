@@ -1,0 +1,18 @@
+version: '2'
+services:
+  mn-pnx:
+    image: 'ntrn-qt'
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ntrn-qt
+    devices:
+      - /dev/snd
+    volumes:
+      - /root/user/1000:/root/user/1000
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - ./.neutron:/root/.neutron
+    environment:
+      - DISPLAY=unix${DISPLAY}
+      - XDG_RUNTIME_DIR=/run/user/1000
+
